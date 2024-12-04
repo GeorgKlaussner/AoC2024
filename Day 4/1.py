@@ -7,7 +7,7 @@ def west(coord):
     x, y = coord
     global sum
     try:
-        if matrix[x-1][y] == b'M' and matrix[x-2][y] == b'A' and matrix[x-3][y] == b'S':
+        if matrix[x-1][y] == b'M' and matrix[x-2][y] == b'A' and matrix[x-3][y] == b'S' and x >= 3:
             sum += 1
             print(f"w {coord}")
     except Exception as e:
@@ -18,7 +18,7 @@ def east(coord):
     x, y = coord
     global sum
     try:
-        if matrix[x+1][y] == b'M' and matrix[x+2][y] == b'A' and matrix[x+3][y] == b'S':
+        if matrix[x+1][y] == b'M' and matrix[x+2][y] == b'A' and matrix[x+3][y] == b'S' and x <= shape[0] -4:
             sum += 1
             print(f"e {coord}")
     except Exception as e:
@@ -28,7 +28,7 @@ def south(coord):
     x, y = coord
     global sum
     try:
-        if matrix[x][y+1] == b'M' and matrix[x][y+2] == b'A' and matrix[x][y+3] == b'S':
+        if matrix[x][y+1] == b'M' and matrix[x][y+2] == b'A' and matrix[x][y+3] == b'S' and y <= shape[1] -4:
             sum += 1
             print(f"s {coord}")
     except Exception as e:
@@ -37,28 +37,22 @@ def south(coord):
 def north(coord):
     x, y = coord
     global sum
-    try:
-        if matrix[x][y-1] == b'M' and matrix[x][y-2] == b'A' and matrix[x][y-3] == b'S':
-            sum += 1
-            print(f"n {coord}")
-    except Exception as e:
-        pass
+    if matrix[x][y-1] == b'M' and matrix[x][y-2] == b'A' and matrix[x][y-3] == b'S' and y >= 3:
+        sum += 1
+        print(f"n {coord}")
 
 def northWest(coord):
     x, y = coord
     global sum
-    try:
-        if matrix[x-1][y-1] == b'M' and matrix[x-2][y-2] == b'A' and matrix[x-3][y-3] == b'S':
-            sum += 1
-            print(f"nw {coord}")
-    except Exception as e:
-        pass
+    if matrix[x-1][y-1] == b'M' and matrix[x-2][y-2] == b'A' and matrix[x-3][y-3] == b'S' and y >= 3 and x >= 3:
+        sum += 1
+        print(f"nw {coord}")
 
 def northEast(coord):
     x, y = coord
     global sum
     try:
-        if matrix[x+1][y-1] == b'M' and matrix[x+2][y-2] == b'A' and matrix[x+3][y-3] == b'S':
+        if matrix[x+1][y-1] == b'M' and matrix[x+2][y-2] == b'A' and matrix[x+3][y-3] == b'S' and y >= 3 and x <= shape[0] -4:
             sum += 1
             print(f"ne {coord}")
     except Exception as e:
@@ -68,7 +62,7 @@ def southEast(coord):
     x, y = coord
     global sum
     try:
-        if matrix[x+1][y+1] == b'M' and matrix[x+2][y+2] == b'A' and matrix[x+3][y+3] == b'S':
+        if matrix[x+1][y+1] == b'M' and matrix[x+2][y+2] == b'A' and matrix[x+3][y+3] == b'S' and y <= shape[1] -4 and x <= shape[0] -4:
             sum += 1
             print(f"se {coord}")
     except Exception as e:
@@ -78,7 +72,7 @@ def southWest(coord):
     x, y = coord
     global sum
     try:
-        if matrix[x-1][y+1] == b'M' and matrix[x-2][y+2] == b'A' and matrix[x-3][y+3] == b'S':
+        if matrix[x-1][y+1] == b'M' and matrix[x-2][y+2] == b'A' and matrix[x-3][y+3] == b'S' and y <= shape[1] -4 and x >= 3:
             print(f"sw {coord}")
             sum += 1
     except Exception as e:
