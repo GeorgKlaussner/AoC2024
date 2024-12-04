@@ -3,41 +3,13 @@ shape = None
 matrix = np.array([])
 sum = 0
 
-def northWest(coord):
+def xmas1(coord):
     y, x = coord
     global sum
-    if matrix[x-1][y-1] == b'M' and y >= 1 and x >= 1:
-        southWest(coord)
-
-def northEast(coord):
-    y, x = coord
-    global sum
-    try:
-        if matrix[x+1][y-1] == b'S' and y >= 1 and x <= shape[0] -2:
-            print(f"ne {coord}")
-            northWest(coord)
-    except Exception as e:
-        pass
-
-def southEast(coord):
-    y, x = coord
-    global sum
-    try:
-        if matrix[x+1][y+1] == b'S' and y <= shape[1] -2 and x <= shape[0] -2:
-            northEast(coord)
-    except Exception as e:
-        pass
-
-def southWest(coord):
-    y, x = coord
-    global sum
-    try:
-        if matrix[x-1][y+1] == b'M' and y <= shape[1] -2 and x >= 1:
-            print(f"sw {coord}")
+    if y >= 1 and x >= 1 and x <= shape[0]-2 and y <= shape[1]-2:
+        print(matrix[x-1][y-1], matrix[x-1][y+1], matrix[x+1][y-1], matrix[x+1][y+1])
+        if matrix[x-1][y-1] == b'M' and matrix[x-1][y+1] == b'M' and matrix[x+1][y-1] == b'S' and matrix[x+1][y+1] == b'S':
             sum += 1
-    except Exception as e:
-        pass
-
 
 def main():
     global shape
@@ -48,9 +20,11 @@ def main():
     listA = tuple(zip(*a))
     print(listA)
     for coord in listA:
-        southEast(coord)
+        xmas1(coord)
+        xmas2(coord)
+        xmas3(coord)
+        xmas4(coord)
     print(sum)
 
 if __name__ == "__main__":
     main()
-    print(shape)
